@@ -1,2 +1,2 @@
 # tuttywordle
-Otra version mas del juego wordle
+Otra version más del juego wordle

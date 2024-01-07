@@ -1,0 +1,110 @@
+:root{
+    --azultutty: #1111c4;
+    --azultuttyclarito: #5555EE;
+    --azultuttyoscuro: #0b0b8a;
+    --gristutty: #BBBBBB;
+    --amarillotutty: #EEEE55;
+}
+
+body{
+    background-color: var(--azultuttyclarito);
+}
+
+header{
+    text-align: center;
+    color: var(--amarillotutty);
+    font-size: 2em;
+    margin : 20px auto;
+
+}
+
+.adivinando-container{
+    display: block;
+    height: 18em;
+    width: 80%;
+    padding: 10px 10px;
+    margin: auto;
+    background-color:#8888EE;
+    border-radius: 10px;
+}
+
+.adivinando{
+    display: block;
+    font-size: 2.5em;
+    color : var(--azultutty);
+    width: 100%;
+    text-align: center;
+    
+    
+}
+
+.letra{
+    display: inline;
+    color : var (--azultutty);
+}
+
+.acierto{
+    font-size: 1em;
+    color :var(--azultutty);
+    background-color:aqua;
+}
+
+.parcial{
+    font-size: 1em;
+    color:var(--azultutty);
+    background-color: var(--amarillotutty);
+}
+
+.letra-error{
+    font-size: 1em;
+    color: var(--azultuttyoscuro);
+    background-color:var(--gristutty);
+}
+
+.teclado-container{
+    display : block;
+    width : 100%;
+    text-align: center;
+    min-width : 320px;
+    margin: 10px auto;
+}
+
+.tecla{
+    display : inline-block;
+    width: 3%;
+    height: 10%;
+    text-align: center;
+    padding : 5px 8px;
+    background-color: var(--azultutty);
+    color: var(--amarillotutty);
+    border-radius: 25%;
+    margin: 2px 1px;
+}
+
+.entrada{
+    display: block;
+    width: 14em;
+    height: 2em;
+    border-radius: 8px;
+    margin: 25px auto;
+
+}
+
+.boton-probar{
+    display: block;
+    background-color:var(--azultutty);
+    color:var(--amarillotutty);
+    height: 2em;
+    width: 50%;
+    text-align: center;
+    padding-top:.6em;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.error{
+    color:purple;
+    background-color:#AA00FF;
+    text-align: center;
+    font-size: 2em;
+}
