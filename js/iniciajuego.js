@@ -123,7 +123,7 @@ var doc_mensajes = document.getElementById("mensajes");
 var intentos=0;
 
 
-doc_boton.addEventListener("click", function (){
+function probar(){
     if (doc_entrada.value.length!=5){
         doc_mensajes.innerHTML='<p class="error">LA PALABRA INGRESADA DEBE CONTAR CON 5 CARACTERES</p>';
         return false;
@@ -167,13 +167,66 @@ doc_boton.addEventListener("click", function (){
         //SI ME QUEDO SIN INTENTOS INFORMO, DETENGO Y SALGO
         intentos+=1;
         if (intentos == 5){
-            doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS!';
+            doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS! LA PALABRA ERA <span class="palabraqueera">'+x+'</span></p>';
             doc_boton.removeEventListener("click",arguments.callee,false);
             return true;
         }
     })
     
-})
+}
+
+
+// doc_boton.addEventListener("click", function (){
+//     if (doc_entrada.value.length!=5){
+//         doc_mensajes.innerHTML='<p class="error">LA PALABRA INGRESADA DEBE CONTAR CON 5 CARACTERES</p>';
+//         return false;
+//     }
+//     var pingresada = new PalabraIngresada(entrada.value);
+//     palabra.string.then(x => {
+//         var a = aciertos(x, pingresada.normalizada);
+
+//         //ACOMODO LAS LETRAS EN PANTALLA:
+//         var anteriores="";
+//         if (intentos>0){
+//             anteriores = doc_adivinando.innerHTML+"<br>";
+//         }
+//         doc_adivinando.innerHTML=anteriores;
+//         clase ="";
+//         for(let i = 0; i < a.length; i++){
+//             if(a[i][1] == 'a'){clase="acierto";
+//             }
+//             if(a[i][1] == 'p'){clase="parcial";
+//             }
+//             if(a[i][1] == 'e'){clase="letra-error";
+//                 teclado.anula_tecla(a[i][0]);
+//                 doc_teclado.innerHTML = teclado.teclado;
+                
+//             }
+//             doc_adivinando.innerHTML=doc_adivinando.innerHTML+'<div class="letra '+clase+'">&nbsp'+a[i][0]+'&nbsp</div>';
+//         }
+//         //REVISO SI GANE:
+//         var ganaste = true;
+//         for (let i = 0; i < a.length; i ++){
+//             if (a[i][1] != "a"){ganaste = false;
+//             }
+//         }
+//         //SI GANE INFORMO, DETENGO EL BOTON Y SALGO
+//         if (ganaste == true){
+//             doc_mensajes.innerHTML='<p class="error"> GANASTE!!!!';
+//             doc_boton.removeEventListener("click",arguments.callee,false);
+//             return true;
+//         }
+
+//         //SI ME QUEDO SIN INTENTOS INFORMO, DETENGO Y SALGO
+//         intentos+=1;
+//         if (intentos == 5){
+//             doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS!';
+//             doc_boton.removeEventListener("click",arguments.callee,false);
+//             return true;
+//         }
+//     })
+    
+// })
 
 
 for (let i = 0; i < 5; i++){
