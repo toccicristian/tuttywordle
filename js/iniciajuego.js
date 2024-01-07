@@ -167,7 +167,7 @@ function probar(){
         //SI ME QUEDO SIN INTENTOS INFORMO, DETENGO Y SALGO
         intentos+=1;
         if (intentos == 5){
-            doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS!';
+            doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS! LA PALABRA ERA <span class="palabraqueera">'+x+'</span></p>';
             doc_boton.removeEventListener("click",arguments.callee,false);
             return true;
         }
