@@ -92,12 +92,13 @@ header{
 
 .boton-probar{
     display: block;
+    border-color:var(--azultuttyclarito);
     background-color:var(--azultutty);
     color:var(--amarillotutty);
-    height: 2em;
+    height: 2.3em;
     width: 50%;
     text-align: center;
-    padding-top:.6em;
+    padding-top:.1em;
     border-radius: 5px;
     margin: 20px auto;
 }
