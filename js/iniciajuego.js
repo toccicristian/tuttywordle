@@ -1,5 +1,5 @@
 // jsonFileUrl="../p5l.json"; // habilitar para liveserver
-jsonFileUrl="./p5l.json";  //deshabilitar con liveserver
+jsonFileUrl="./tuttywordle/p5l.json";  //deshabilitar con liveserver
 
  function cargar_palabras(jsonFileUrl){
      return fetch(jsonFileUrl).then((response) => response.json()).then((j) => {
