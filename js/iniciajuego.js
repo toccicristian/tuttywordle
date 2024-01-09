@@ -9,7 +9,6 @@ jsonFileUrl="../p5l.json"; // habilitar para liveserver y deshabilitar para gith
      })
  }
 
-
 class TablaLetras{
     constructor (){
         this.tabla = {};

@@ -18,6 +18,10 @@ header{
 
 }
 
+.version{
+    font-size: 0.3em;
+}
+
 .adivinando-container{
     display: block;
     height: 18em;
