@@ -1,5 +1,5 @@
-// jsonFileUrl="../p5l.json"; // habilitar para liveserver
-jsonFileUrl="./p5l.json";  //deshabilitar con liveserver
+jsonFileUrl="../p5l.json"; // habilitar para liveserver y deshabilitar para github pages
+// jsonFileUrl="./p5l.json";  //deshabilitar con liveserver y habilitar para github pages
 
  function cargar_palabras(jsonFileUrl){
      return fetch(jsonFileUrl).then((response) => response.json()).then((j) => {
@@ -8,6 +8,39 @@ jsonFileUrl="./p5l.json";  //deshabilitar con liveserver
          return j[randomindex];
      })
  }
+
+class TablaLetras{
+    constructor (){
+        this.tabla = {};
+    }
+
+    cuenta_letra (l){
+        let tlista = Object.keys(this.tabla);
+        for (let i = 0; i < tlista.length;i++){
+            if(tlista[i] == l){
+                return this.tabla[l];
+            }
+        }
+        return 0;
+    }
+
+    agrega_letra(l){
+
+        if (this.cuenta_letra(l) == 0){
+            this.tabla[l] = 0;
+        }
+        this.tabla[l]++;
+        return this.tabla[l];
+    }
+
+    resta_letra(l){
+        if (this.cuenta_letra(l) == 0){
+            return false;
+        }
+        this.tabla[l]--;
+        return this.tabla[l];
+    }
+}
 
 class PalabraDelDia{
     constructor (){
@@ -90,11 +123,21 @@ class Teclado{
     }
 }
 
+function cant_letra(letra,arr){
+    var cantletra=0;
+    for (let i = 0; i < arr.length; i++){
+        if (arr[i] == letra){
+            cantletra +=1
+        }
+    }
+    return cantletra;
+}
+
 function aciertos (pdeldia, pingresada){
     resultados=[];
-    acierto = "a";
-    parcial = "p";
-    error = "e";
+    var acierto = "a";
+    var parcial = "p";
+    var error = "e";
 
     for (i = 0; i < pingresada.length; i++){
 
@@ -108,6 +151,20 @@ function aciertos (pdeldia, pingresada){
 
         if (pingresada[i] == pdeldia[i]){
             resultados[i] = [pingresada[i], acierto];
+        } 
+    }
+
+    let tabla_ingresada = new TablaLetras();
+    let tabla_deldia = new TablaLetras();
+    for (let i = 0; i < pingresada.length; i ++){
+        tabla_ingresada.agrega_letra(pingresada[i]);
+        tabla_deldia.agrega_letra(pdeldia[i]);
+    }
+    for (let i = 0; i < pingresada.length; i ++){
+        if ((tabla_deldia.cuenta_letra(pingresada[i]) < tabla_ingresada.cuenta_letra(pingresada[i]))
+        && (resultados[i][1] != acierto)){
+            resultados[i][1] = error;
+            tabla_ingresada.resta_letra(pingresada[i]);
         }
     }
     return resultados;
@@ -118,7 +175,7 @@ var palabra = new PalabraDelDia();
 var teclado = new Teclado();
 var doc_adivinando=document.getElementById("adivinando");
 var doc_teclado = document.getElementById("teclado");
-var doc_boton = document.getElementById("probar");
+var doc_boton = document.getElementById("boton-probar");
 var doc_entrada = document.getElementById("entrada");
 var doc_mensajes = document.getElementById("mensajes");
 var intentos=0;
@@ -162,6 +219,7 @@ function probar(){
         if (ganaste == true){
             doc_mensajes.innerHTML='<p class="error"> GANASTE!!!!';
             doc_boton.removeEventListener("click",arguments.callee,false);
+            // document.getElementById("boton-probar").removeEventListener("click",arguments.callee,false);
             return true;
         }
 
@@ -169,65 +227,13 @@ function probar(){
         intentos+=1;
         if (intentos == 5){
             doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS! LA PALABRA ERA <span class="palabraqueera">'+x+'</span></p>';
+            // document.getElementById("boton-probar").removeEventListener("click",arguments.callee,false);
             doc_boton.removeEventListener("click",arguments.callee,false);
             return true;
         }
     })
     
 }
-
-
-// doc_boton.addEventListener("click", function (){
-//     if (doc_entrada.value.length!=5){
-//         doc_mensajes.innerHTML='<p class="error">LA PALABRA INGRESADA DEBE CONTAR CON 5 CARACTERES</p>';
-//         return false;
-//     }
-//     var pingresada = new PalabraIngresada(entrada.value);
-//     palabra.string.then(x => {
-//         var a = aciertos(x, pingresada.normalizada);
-
-//         //ACOMODO LAS LETRAS EN PANTALLA:
-//         var anteriores="";
-//         if (intentos>0){
-//             anteriores = doc_adivinando.innerHTML+"<br>";
-//         }
-//         doc_adivinando.innerHTML=anteriores;
-//         clase ="";
-//         for(let i = 0; i < a.length; i++){
-//             if(a[i][1] == 'a'){clase="acierto";
-//             }
-//             if(a[i][1] == 'p'){clase="parcial";
-//             }
-//             if(a[i][1] == 'e'){clase="letra-error";
-//                 teclado.anula_tecla(a[i][0]);
-//                 doc_teclado.innerHTML = teclado.teclado;
-                
-//             }
-//             doc_adivinando.innerHTML=doc_adivinando.innerHTML+'<div class="letra '+clase+'">&nbsp'+a[i][0]+'&nbsp</div>';
-//         }
-//         //REVISO SI GANE:
-//         var ganaste = true;
-//         for (let i = 0; i < a.length; i ++){
-//             if (a[i][1] != "a"){ganaste = false;
-//             }
-//         }
-//         //SI GANE INFORMO, DETENGO EL BOTON Y SALGO
-//         if (ganaste == true){
-//             doc_mensajes.innerHTML='<p class="error"> GANASTE!!!!';
-//             doc_boton.removeEventListener("click",arguments.callee,false);
-//             return true;
-//         }
-
-//         //SI ME QUEDO SIN INTENTOS INFORMO, DETENGO Y SALGO
-//         intentos+=1;
-//         if (intentos == 5){
-//             doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS!';
-//             doc_boton.removeEventListener("click",arguments.callee,false);
-//             return true;
-//         }
-//     })
-    
-// })
 
 
 for (let i = 0; i < 5; i++){
@@ -237,7 +243,7 @@ doc_teclado.innerHTML = teclado.teclado;
 
 
 
-//palabra.string.then (x => console.log(x));
+ // palabra.string.then (x => console.log(x));
 
 // ingresada = new PalabraIngresada ("hueso");
 // console.log(ingresada.normalizada);
