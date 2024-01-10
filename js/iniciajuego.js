@@ -1,5 +1,5 @@
-jsonFileUrl="../p5l.json"; // habilitar para liveserver y deshabilitar para github pages
-// jsonFileUrl="./p5l.json";  //deshabilitar con liveserver y habilitar para github pages
+//jsonFileUrl="../p5l.json"; // habilitar para liveserver y deshabilitar para github pages
+jsonFileUrl="./p5l.json";  //deshabilitar con liveserver y habilitar para github pages
 
  function cargar_palabras(jsonFileUrl){
      return fetch(jsonFileUrl).then((response) => response.json()).then((j) => {
