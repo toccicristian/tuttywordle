@@ -25,7 +25,9 @@ header{
 .adivinando-container{
     display: block;
     height: 18em;
+    min-width: 240px;
     width: 80%;
+    max-width: 300px;
     padding: 10px 10px;
     margin: auto;
     background-color:#8888EE;
@@ -34,8 +36,10 @@ header{
 
 .adivinando{
     display: block;
+    padding:0;
     font-size: 2.5em;
     color : var(--azultutty);
+    min-width: 220px;
     width: 100%;
     text-align: center;
     
@@ -43,26 +47,29 @@ header{
 }
 
 .letra{
-    display: inline;
+    display: inline-block;
     color : var (--azultutty);
+    width: 18%;
+    margin: 0 1%;
+    border-radius:10px;
 }
 
 .acierto{
     font-size: 1em;
     color :var(--azultutty);
-    background-color:aqua;
+    background-image: linear-gradient(49deg, rgba(9,91,121,1) 0%, rgba(20,176,233,1) 29%, rgba(151,227,255,1) 53%);
 }
 
 .parcial{
     font-size: 1em;
     color:var(--azultutty);
-    background-color: var(--amarillotutty);
+    background-image: linear-gradient(49deg, rgba(255,182,0,1) 0%, rgba(255,220,0,1) 29%, rgba(242,237,0,1) 53%);
 }
 
 .letra-error{
     font-size: 1em;
     color: var(--azultuttyoscuro);
-    background-color:var(--gristutty);
+    background-image: linear-gradient(49deg, rgba(61,64,65,1) 0%, rgba(156,156,156,1) 29%, rgba(219,219,219,1) 53%);
 }
 
 .teclado-container{
