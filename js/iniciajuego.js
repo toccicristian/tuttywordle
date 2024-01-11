@@ -1,5 +1,5 @@
 //jsonFileUrl="../p5l.json"; // habilitar para liveserver y deshabilitar para github pages
-jsonFileUrl="./p5l.json";  //deshabilitar con liveserver y habilitar para github pages
+jsonFileUrl="./p5l.json";  // habilitar para github pages y deshabilitar con liveserver
 
  function cargar_palabras(jsonFileUrl){
      return fetch(jsonFileUrl).then((response) => response.json()).then((j) => {
@@ -218,17 +218,19 @@ function probar(){
         //SI GANE INFORMO, DETENGO EL BOTON Y SALGO
         if (ganaste == true){
             doc_mensajes.innerHTML='<p class="error"> GANASTE!!!!';
+            //document.getElementById("boton-probar").removeEventListener("click",arguments.callee,false);
             doc_boton.removeEventListener("click",arguments.callee,false);
-            // document.getElementById("boton-probar").removeEventListener("click",arguments.callee,false);
+            doc_boton.setAttribute("disabled","true");
             return true;
         }
 
         //SI ME QUEDO SIN INTENTOS INFORMO, DETENGO Y SALGO
         intentos+=1;
-        if (intentos == 6){
+        if (intentos > 5){
             doc_mensajes.innerHTML='<p class="error"> NO QUEDAN INTENTOS! LA PALABRA ERA <span class="palabraqueera">'+x+'</span></p>';
-            // document.getElementById("boton-probar").removeEventListener("click",arguments.callee,false);
+            //document.getElementById("boton-probar").removeEventListener("click",arguments.callee,false);
             doc_boton.removeEventListener("click",arguments.callee,false);
+            doc_boton.setAttribute("disabled","true");
             return true;
         }
     })
@@ -236,7 +238,7 @@ function probar(){
 }
 
 
-for (let i = 0; i < 6; i++){
+for (let i = 0; i < 5; i++){
     doc_adivinando.innerHTML=adivinando.innerHTML+"&nbsp_&nbsp"
 }
 doc_teclado.innerHTML = teclado.teclado;
